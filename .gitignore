@@ -1,0 +1,10 @@
+__pycache__/
+*.py[cod]
+.venv/
+data/
+pretrained/
+runs/
+*.pth
+*.pt
+*.zip
+*.log

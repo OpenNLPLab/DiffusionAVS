@@ -1,0 +1,81 @@
+{
+  "TRAIN": {
+    "FREEZE_AUDIO_EXTRACTOR": true,
+    "PRETRAINED_VGGISH_MODEL_PATH": "pretrained/vggish-10086976.pth",
+    "PREPROCESS_AUDIO_TO_LOG_MEL": false,
+    "POSTPROCESS_LOG_MEL_WITH_PCA": false,
+    "PRETRAINED_PCA_PARAMS_PATH": "pretrained/vggish_pca_params-970ea276.pth",
+    "FREEZE_VISUAL_EXTRACTOR": false,
+    "PRETRAINED_PVTV2_PATH": "pretrained/pvt_v2_b5.pth",
+    "LOG_DIR": "./experiments",
+    "SAVE_NAME": "diffusionavs",
+    "TASK": "MS3"
+  },
+  "DATA": {
+    "ANNO_CSV": "data/AVSBench-object/Multi-sources/ms3_meta_data.csv",
+    "DIR_IMG": "data/AVSBench-object/Multi-sources/ms3_data/visual_frames",
+    "DIR_AUDIO_LOG_MEL": "data/AVSBench-object/Multi-sources/ms3_data/audio_log_mel",
+    "DIR_MASK": "data/AVSBench-object/Multi-sources/ms3_data/gt_masks",
+    "IMG_SIZE": [
+      224,
+      224
+    ],
+    "RANDOM_FLIP": true
+  },
+  "MODEL": {
+    "ENCODER": "pvt",
+    "NECK": "basic",
+    "DECODER": "simple_no_module",
+    "FUSION": "tpavi",
+    "NECK_CHANNEL": 128,
+    "MUTUAL_REG_CHANNEL": 64,
+    "MUTUAL_REG_SIZE": 6,
+    "VAE_LATENT_SIZE": 12,
+    "TRAINED": null
+  },
+  "PARAM": {
+    "BATCH_SIZE": 4,
+    "NUM_WORKERS": 8,
+    "EPOCHS": 30,
+    "LR": 0.0001,
+    "LR_DECAY_RATE": 0.5,
+    "LR_DECAY_STEP": 12,
+    "SEED": 1234,
+    "SA_LOSS_STAGES": [
+      0,
+      1,
+      2,
+      3
+    ],
+    "TPAVI_STAGES": [
+      0,
+      1,
+      2,
+      3
+    ],
+    "MASK_POOLING_TYPE": "avg",
+    "TPAVI_VA_FLAGE": true,
+    "MI_LOSS": 0.01,
+    "DIFF_LOSS": 0.01,
+    "KL_LOSS": 0.005,
+    "SIM_LOSS": 0.5
+  },
+  "BACKUP": {
+    "BASE_NAME": "MS3_pvt_basic",
+    "PARAM_STR": "0.01_0.01_0.005_0.5",
+    "FOLDER_NAME": "MS3_pvt_basic_0.01_0.01_0.005_0.5"
+  },
+  "DIFFUSION": {
+    "LATENT_DIM": 24,
+    "TRAIN_STEPS": 20,
+    "SAMPLE_STEPS": 10,
+    "PARAMETERIZATION": "vp",
+    "WEIGHT": 1.0,
+    "CONTRASTIVE_WEIGHT": 0.1,
+    "TEMPERATURE": 1.0,
+    "SEGMENTATION": "baseline",
+    "SEMANTIC_WEIGHT": 1.0,
+    "EVAL_SEED": 20261116,
+    "INIT": "ImageNet PVT + pretrained frozen VGGish"
+  }
+}
